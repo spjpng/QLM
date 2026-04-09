@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuickLift Moving | Moving & Junk Removal — New Castle, DE</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --red: #c0392b; --red-dark: #962d22; --yellow: #f5c200;
+    --black: #111; --dark: #1c1c1c; --white: #fff;
+    --light: #f7f7f7; --text: #222; --muted: #666; --border: #e2e2e2;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+/* NAV */
+nav { display: flex; justify-content: space-between; align-items: center; padding: 0 6%; height: 68px; background: var(–black); position: sticky; top: 0; z-index: 100; border-bottom: 3px solid var(–red); }
+.logo { font-family: ‘Barlow Condensed’, sans-serif; font-size: 1.65rem; font-weight: 800; color: var(–white); }
+.logo em { color: var(–yellow); font-style: normal; }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a { color: #ccc; text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
+.nav-links a:hover { color: var(–white); }
+.nav-cta { background: var(–red); color: var(–white) !important; padding: .5rem 1.3rem; border-radius: 4px; font-weight: 600 !important; transition: background .2s !important; }
+.nav-cta:hover { background: var(–red-dark) !important; }
+
+/* HERO */
+.hero { background: var(–dark); padding: 5rem 6% 4.5rem; position: relative; overflow: hidden; }
+.hero::after { content: ‘’; position: absolute; right: 0; top: 0; width: 40%; height: 100%; background: linear-gradient(135deg, transparent 40%, rgba(192,57,43,.1) 100%); pointer-events: none; }
+.hero-badge { display: inline-flex; align-items: center; gap: .5rem; background: rgba(245,194,0,.1); border: 1px solid rgba(245,194,0,.3); color: var(–yellow); font-size: .75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: .35rem .9rem; border-radius: 3px; margin-bottom: 1.4rem; }
+.hero-badge svg { width: 13px; height: 13px; }
+.hero h1 { font-family: ‘Barlow Condensed’, sans-serif; font-size: clamp(3rem, 7vw, 5.2rem); font-weight: 800; color: var(–white); line-height: 1.0; max-width: 700px; }
+.hero h1 em { color: var(–yellow); font-style: normal; }
+.hero-sub { color: #aaa; font-size: 1.05rem; max-width: 500px; margin: 1.3rem 0 .8rem; line-height: 1.75; }
+.hero-location { display: flex; align-items: center; gap: .4rem; color: #888; font-size: .88rem; margin-bottom: 2rem; }
+.hero-location svg { width: 14px; height: 14px; color: var(–yellow); }
+.hero-rating { display: flex; align-items: center; gap: .6rem; background: rgba(255,255,255,.05); border: 1px solid #333; border-radius: 6px; padding: .6rem 1rem; margin-bottom: 2rem; width: fit-content; }
+.stars { display: flex; gap: 2px; }
+.stars svg { width: 16px; height: 16px; color: #f5c200; fill: #f5c200; }
+.hero-rating-text { color: #ccc; font-size: .9rem; }
+.hero-rating-text strong { color: var(–white); }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-red { display: inline-flex; align-items: center; gap: .55rem; background: var(–red); color: var(–white); padding: .85rem 1.8rem; border-radius: 5px; font-weight: 600; font-size: .95rem; text-decoration: none; transition: background .2s, transform .15s; }
+.btn-red:hover { background: var(–red-dark); transform: translateY(-1px); }
+.btn-red svg { width: 16px; height: 16px; }
+.btn-ghost { display: inline-flex; align-items: center; gap: .55rem; border: 1.5px solid #444; color: #ccc; padding: .83rem 1.8rem; border-radius: 5px; font-weight: 500; font-size: .95rem; text-decoration: none; transition: border-color .2s, color .2s; }
+.btn-ghost:hover { border-color: #888; color: var(–white); }
+.btn-ghost svg { width: 16px; height: 16px; }
+.trust-strip { display: flex; gap: 2.5rem; margin-top: 3rem; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: .45rem; color: #888; font-size: .88rem; }
+.trust-item svg { color: var(–yellow); width: 14px; height: 14px; }
+
+/* PRICING BANNER */
+.pricing-banner { background: var(–red); padding: .85rem 6%; display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+.pricing-banner .pb-item { color: var(–white); font-weight: 500; font-size: .88rem; display: flex; align-items: center; gap: .4rem; white-space: nowrap; }
+.pricing-banner .pb-item svg { width: 13px; height: 13px; flex-shrink: 0; }
+.pricing-banner .pb-price { font-family: ‘Barlow Condensed’, sans-serif; font-size: 1.15rem; font-weight: 800; }
+.pricing-banner .pb-divider { color: rgba(255,255,255,.35); font-size: 1.2rem; line-height: 1; }
+@media (max-width: 500px) { .pricing-banner { gap: .75rem; } .pricing-banner .pb-divider { display: none; } }
+
+/* CAROUSEL */
+.photos { padding: 4.5rem 6%; background: var(–light); }
+.section-eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(–red); margin-bottom: .5rem; }
+.section-heading { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 800; font-size: clamp(1.9rem, 4vw, 2.8rem); color: var(–text); margin-bottom: 2rem; }
+.carousel { position: relative; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16/9; max-height: 480px; }
+.carousel-track { display: flex; height: 100%; transition: transform .45s cubic-bezier(.4,0,.2,1); }
+.carousel-slide { min-width: 100%; height: 100%; }
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,.55); border: none; color: #fff; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s; z-index: 2; }
+.carousel-btn:hover { background: rgba(0,0,0,.8); }
+.carousel-btn svg { width: 20px; height: 20px; }
+.carousel-prev { left: 12px; }
+.carousel-next { right: 12px; }
+.carousel-dots { display: flex; justify-content: center; gap: 6px; margin-top: 14px; }
+.carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; border: none; cursor: pointer; transition: background .2s, transform .2s; padding: 0; }
+.carousel-dot.active { background: var(–red); transform: scale(1.3); }
+
+/* SERVICES */
+.services { padding: 4.5rem 6%; background: var(–white); }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.4rem; }
+.card { background: var(–white); padding: 2rem 1.8rem; border-radius: 8px; border: 1px solid var(–border); border-top: 4px solid var(–red); transition: box-shadow .2s, transform .2s; }
+.card:hover { box-shadow: 0 8px 28px rgba(0,0,0,.09); transform: translateY(-3px); }
+.card-icon { width: 46px; height: 46px; background: #fdf2f2; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem; }
+.card-icon svg { width: 22px; height: 22px; color: var(–red); }
+.card h3 { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 700; font-size: 1.2rem; color: var(–text); margin-bottom: .5rem; }
+.card p { color: var(–muted); font-size: .92rem; line-height: 1.65; }
+.service-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+.tag { background: #f7f7f7; border: 1px solid #e0e0e0; color: #555; font-size: .78rem; padding: .25rem .65rem; border-radius: 20px; }
+
+/* WHY US */
+.why { background: var(–black); padding: 4.5rem 6%; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.why .section-eyebrow { color: var(–yellow); }
+.why .section-heading { color: var(–white); margin-bottom: 1rem; }
+.why-desc { color: #999; line-height: 1.8; margin-bottom: 2rem; font-size: .97rem; }
+.checklist { list-style: none; display: flex; flex-direction: column; gap: .75rem; margin-bottom: 2.2rem; }
+.checklist li { display: flex; align-items: center; gap: .7rem; color: #ccc; font-size: .95rem; }
+.checklist li svg { color: var(–yellow); width: 15px; height: 15px; flex-shrink: 0; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.stat { background: #1e1e1e; border: 1px solid #2e2e2e; border-radius: 8px; padding: 1.6rem 1.4rem; }
+.stat-num { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 800; font-size: 2.4rem; color: var(–yellow); line-height: 1; }
+.stat-label { color: #888; font-size: .82rem; margin-top: .35rem; }
+
+/* REVIEWS */
+.reviews { padding: 4.5rem 6%; background: var(–light); }
+.review-score { display: flex; align-items: center; gap: 2rem; margin-bottom: 2.5rem; padding: 1.5rem 2rem; background: var(–white); border-radius: 10px; border: 1px solid var(–border); width: fit-content; }
+.score-big { font-family: ‘Barlow Condensed’, sans-serif; font-size: 3.5rem; font-weight: 800; color: var(–text); line-height: 1; }
+.score-label { color: var(–muted); font-size: .88rem; margin-top: .25rem; }
+.score-stars { display: flex; gap: 3px; margin: .4rem 0 .2rem; }
+.score-stars svg { width: 20px; height: 20px; color: #f5c200; fill: #f5c200; }
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.review-card { background: var(–white); border: 1px solid var(–border); border-radius: 10px; padding: 1.6rem; }
+.review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .8rem; }
+.reviewer-name { font-weight: 600; font-size: .98rem; color: var(–text); }
+.reviewer-date { color: var(–muted); font-size: .82rem; }
+.review-stars { display: flex; gap: 2px; margin-bottom: .6rem; }
+.review-stars svg { width: 14px; height: 14px; color: #4caf50; fill: #4caf50; }
+.review-source { font-size: .78rem; color: var(–muted); margin-bottom: .7rem; display: flex; align-items: center; gap: .3rem; }
+.review-source svg { width: 12px; height: 12px; color: #2196f3; }
+.review-text { color: #444; font-size: .92rem; line-height: 1.65; }
+
+/* PROCESS */
+.process { padding: 4.5rem 6%; background: var(–white); }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem; }
+.step { text-align: center; padding: 1rem; }
+.step-num { width: 54px; height: 54px; background: var(–red); color: var(–white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: ‘Barlow Condensed’, sans-serif; font-size: 1.5rem; font-weight: 800; margin: 0 auto 1.1rem; }
+.step h3 { font-weight: 600; margin-bottom: .45rem; font-size: 1rem; color: var(–text); }
+.step p { color: var(–muted); font-size: .9rem; line-height: 1.65; }
+
+/* CTA BAND */
+.cta-band { background: var(–red); padding: 4rem 6%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+.cta-band h2 { font-family: ‘Barlow Condensed’, sans-serif; font-weight: 800; font-size: clamp(1.7rem, 3.5vw, 2.5rem); color: var(–white); max-width: 520px; }
+.cta-band p { color: rgba(255,255,255,.8); font-size: .95rem; margin-top: .4rem; }
+.btn-yellow { display: inline-flex; align-items: center; gap: .55rem; background: var(–yellow); color: var(–black); padding: .9rem 2rem; border-radius: 5px; font-weight: 700; font-size: .95rem; text-decoration: none; white-space: nowrap; transition: opacity .2s; }
+.btn-yellow:hover { opacity: .9; }
+.btn-yellow svg { width: 16px; height: 16px; }
+
+/* FOOTER */
+footer { background: #0a0a0a; color: #555; padding: 2.2rem 6%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: .88rem; border-top: 1px solid #1e1e1e; }
+footer strong { color: var(–yellow); }
+.footer-links { display: flex; gap: 1.8rem; }
+.footer-links a { color: #555; text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(–white); }
+
+@media (max-width: 760px) {
+.why { grid-template-columns: 1fr; gap: 3rem; }
+.nav-links { display: none; }
+footer, .cta-band { flex-direction: column; text-align: center; }
+.review-score { flex-direction: column; gap: .5rem; align-items: flex-start; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <div class="logo">Quick<em>Lift</em> Moving</div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact" class="nav-cta">Get a Free Quote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-badge">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    Same-Day Service Available
+  </div>
+  <h1>We <em>Haul It.</em><br>You Forget It.</h1>
+  <p class="hero-sub">Professional moving &amp; junk removal — fast, careful, and stress-free. One call and it's handled.</p>
+  <div class="hero-location">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    New Castle, DE &amp; surrounding areas
+  </div>
+  <div class="hero-rating">
+    <div class="stars">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <span class="hero-rating-text"><strong>Exceptional 5.0</strong> · 35 reviews on Thumbtack</span>
+  </div>
+  <div class="hero-btns">
+    <a href="tel:+15550001234" class="btn-red">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.73 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.66 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.63a16 16 0 0 0 6 6l1-1a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Call for a Free Quote
+    </a>
+    <a href="#reviews" class="btn-ghost">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Read Reviews
+    </a>
+  </div>
+  <div class="trust-strip">
+    <span class="trust-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Licensed &amp; Insured</span>
+    <span class="trust-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>No Hidden Fees</span>
+    <span class="trust-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Furniture Wrapped &amp; Protected</span>
+    <span class="trust-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Residential &amp; Commercial</span>
+  </div>
+</section>
+
+<!-- PRICING BANNER -->
+
+<div class="pricing-banner">
+  <span class="pb-item"><span class="pb-price">$90</span>/hour base price</span>
+  <span class="pb-divider">·</span>
+  <span class="pb-item">Free estimate, no obligation</span>
+  <span class="pb-divider">·</span>
+  <span class="pb-item">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    Furniture assembly included
+  </span>
+  <span class="pb-divider">·</span>
+  <span class="pb-item">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    Local &amp; long-distance moves
+  </span>
+</div>
+
+<!-- PHOTO CAROUSEL -->
+
+<section class="photos">
+  <div class="section-eyebrow">Our Work</div>
+  <div class="section-heading">Real Jobs, Real Results</div>
+  <div class="carousel" id="carousel">
+    <div class="carousel-track" id="carouselTrack">
+      <div class="carousel-slide"><img src="https://i.ibb.co/PvcBz6nv/IMG-6834.jpg" alt="Truck fully loaded with items packed tight"></div>
+      <div class="carousel-slide"><img src="https://i.ibb.co/PGF8G1WY/IMG-6836.jpg" alt="Moving truck interior fully loaded"></div>
+      <div class="carousel-slide"><img src="https://i.ibb.co/bMkssCfX/IMG-6837.jpg" alt="Furniture wrapped and protected in truck"></div>
+      <div class="carousel-slide"><img src="https://i.ibb.co/pjnVJCQf/IMG-6835.jpg" alt="Boxes and furniture stacked in container"></div>
+      <div class="carousel-slide"><img src="https://i.ibb.co/HL7fg02g/IMG-6838.jpg" alt="U-Haul truck loaded with boxes"></div>
+      <div class="carousel-slide"><img src="https://i.ibb.co/7x0W8sFt/IMG-6839.jpg" alt="Furniture wrapped and placed in home"></div>
+      <div class="carousel-slide"><img src="https://i.ibb.co/5XN34BgX/IMG-6840.jpg" alt="Container fully packed with items"></div>
+    </div>
+    <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)" aria-label="Previous">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="carousel-btn carousel-next" onclick="moveCarousel(1)" aria-label="Next">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+  <div class="carousel-dots" id="carouselDots"></div>
+  <p style="color:var(--muted);font-size:.85rem;margin-top:1.2rem;text-align:center;">
+    View all 13 photos on our <a href="https://www.thumbtack.com/de/new-castle/moving-companies/quicklift-moving/service/572974153873571869" style="color:var(--red);text-decoration:none;font-weight:600;" target="_blank">Thumbtack profile</a>
+  </p>
+</section>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.carousel-slide');
+  const track = document.getElementById('carouselTrack');
+  const dotsContainer = document.getElementById('carouselDots');
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsContainer.appendChild(d);
+  });
+
+  function goTo(n) {
+    current = (n + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    document.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+  function moveCarousel(dir) { goTo(current + dir); }
+  setInterval(() => moveCarousel(1), 4000);
+</script>
+
+<!-- SERVICES -->
+
+<section class="services" id="services">
+  <div class="section-eyebrow">What We Do</div>
+  <div class="section-heading">Full-Service Moving &amp; Removal</div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <h3>Local Moving</h3>
+      <p>Full-service moves under 50 miles — we handle load, transport, and unload with care.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M12 7V4a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>
+      </div>
+      <h3>Furniture Moving</h3>
+      <p>Sofas, mattresses, bed frames, dining tables, armchairs and more — safely wrapped and moved.</p>
+      <div class="service-tags">
+        <span class="tag">Sofa</span><span class="tag">Mattress</span><span class="tag">Bed frame</span><span class="tag">Armchair</span><span class="tag">Dining table</span><span class="tag">+8 more</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3>Home &amp; Garage Cleanouts</h3>
+      <p>Clearing out attics, garages, or entire homes? We haul it all away — fast and affordable.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="12 20 12 10"/><polyline points="18 20 18 4"/><polyline points="6 20 6 16"/></svg>
+      </div>
+      <h3>Furniture Assembly</h3>
+      <p>We assemble and disassemble furniture before and after every move — included in service.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+
+<section class="why">
+  <div class="why-text">
+    <div class="section-eyebrow">Why QuickLift</div>
+    <div class="section-heading">Fast. Fair. Reliable.</div>
+    <p class="why-desc">With a perfect 5.0 rating across 35 verified reviews, we've built our reputation on showing up on time, treating your belongings with care, and leaving no hidden fees behind.</p>
+    <ul class="checklist">
+      <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Furniture wrapped &amp; protected on every job</li>
+      <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Upfront pricing — zero surprise charges</li>
+      <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Responsive &amp; professional from first call to last box</li>
+    </ul>
+    <a href="tel:+15550001234" class="btn-red">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.73 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.66 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.63a16 16 0 0 0 6 6l1-1a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Book Your Move Today
+    </a>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">35+</div><div class="stat-label">Verified Reviews</div></div>
+    <div class="stat"><div class="stat-num">5.0</div><div class="stat-label">Star Rating</div></div>
+    <div class="stat"><div class="stat-num">$90</div><div class="stat-label">Per Hour Base Rate</div></div>
+    <div class="stat"><div class="stat-num">$0</div><div class="stat-label">Hidden Fees</div></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+
+<section class="reviews" id="reviews">
+  <div class="section-eyebrow">What Customers Say</div>
+  <div class="section-heading">Exceptional 5.0 on Thumbtack</div>
+  <div class="review-score">
+    <div class="score-big">5.0</div>
+    <div>
+      <div class="score-stars">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="score-label">35 verified reviews · 100% five-star</div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-name">Chelsea M.</div>
+        <div class="reviewer-date">3 weeks ago</div>
+      </div>
+      <div class="review-stars">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="review-source"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Hired on Thumbtack · Furniture Moving &amp; Heavy Lifting</div>
+      <p class="review-text">"10/10 would recommend! Emmanuel is very responsive and professional. Movers did great and honestly packed the POD more than we would have thought could fit. Great price, no hidden fees, they wrapped everything."</p>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-name">Jake W.</div>
+        <div class="reviewer-date">Mar 8, 2026</div>
+      </div>
+      <div class="review-stars">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="review-source"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Hired on Thumbtack · Local Moving</div>
+      <p class="review-text">"One of the best guys out here. Delivered to customer door with care. Very good at what he does. Would definitely recommend and use again."</p>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-name">Marlee R.</div>
+        <div class="reviewer-date">3 days ago</div>
+      </div>
+      <div class="review-stars">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="review-source"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Hired on Thumbtack · Local Moving</div>
+      <p class="review-text">"Helped us move two rugs, a couch and a bed! Extremely helpful, showed up early, professional. Would hire again without hesitation."</p>
+    </div>
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-name">Stephanie K.</div>
+        <div class="reviewer-date">3 days ago</div>
+      </div>
+      <div class="review-stars">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="review-source"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Hired on Thumbtack · Furniture Moving &amp; Heavy Lifting</div>
+      <p class="review-text">"Highly recommend! They had quick response and stayed in contact the entire time. Moved everything with ease and were very friendly! 10/10."</p>
+    </div>
+  </div>
+  <p style="text-align:center;margin-top:2rem;">
+    <a href="https://www.thumbtack.com/de/new-castle/moving-companies/quicklift-moving/service/572974153873571869" target="_blank" style="color:var(--red);font-weight:600;text-decoration:none;font-size:.95rem;">View all 35 reviews on Thumbtack &rarr;</a>
+  </p>
+</section>
+
+<!-- PROCESS -->
+
+<section class="process" id="process">
+  <div class="section-eyebrow">Simple Process</div>
+  <div class="section-heading">Done in 3 Easy Steps</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Call or Book Online</h3>
+      <p>Tell us what you need moved. Get a free, no-obligation quote on the spot — $90/hr base rate.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>We Show Up &amp; Haul</h3>
+      <p>Our uniformed crew arrives on time, wraps your furniture, and does all the heavy lifting.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Enjoy Your Space</h3>
+      <p>We unload, reassemble, and leave everything in place. You relax — we handle the rest.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+
+<div class="cta-band" id="contact">
+  <div>
+    <h2>Ready to Move? Let's Get to Work.</h2>
+    <p>Serving New Castle, DE and surrounding areas · $90/hr · Free estimates</p>
+  </div>
+  <a href="tel:+15550001234" class="btn-yellow">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.73 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.66 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.63a16 16 0 0 0 6 6l1-1a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Call for a Free Quote
+  </a>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+  <div>© 2026 <strong>QuickLift Moving</strong> · New Castle, DE · All rights reserved</div>
+  <div class="footer-links">
+    <a href="https://www.thumbtack.com/de/new-castle/moving-companies/quicklift-moving/service/572974153873571869" target="_blank">Thumbtack Profile</a>
+    <a href="tel:+15550001234">(555) 000-1234</a>
+  </div>
+</footer>
+
+</body>
+</html>
